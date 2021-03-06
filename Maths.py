@@ -63,7 +63,7 @@ class PyMaths():
 
 
   def IP2BIN(self,IP):
-
+                            #This functions converts an IP address from its denary to its binary counterpart
 
     splitIP = IP.split(".")
     binARR = []
@@ -74,10 +74,51 @@ class PyMaths():
       
     print(binARR)
 
+
+  def Hex2Den(HexINP):
+
+    nums = []
+    x = HexINP.upper()
+    emptList = []
+    endNum = 0
+    
+    hexDict = {
+      "A":10,
+      "B":11,
+      "C":12,
+      "D":13,
+      "E":14,
+      "F":15
+  }
+    
+    hexARR = list(x)
+    
+    for i in range(10):
+      nums.append(str(i))
+    
+    for i in range(len(hexARR)):
+
+      if hexARR[i] in nums:
+        emptList.append(int(hexARR[i]))
+
+      else:
+        
+        emptList.append(hexDict[hexARR[i]])
+
+    emptList.reverse()
+      
+    for i in range(len(emptList)):
+
+      endNum += emptList[i] * pow(16,i)
+      
+
+    return endNum
     
 
 E = PyMaths() #Init of class object to use functions that need to use self
 
-E.IP2BIN("192.168.1.2")
+x = PyMaths.Hex2Den("a2f")
+
+print(x)
 
 

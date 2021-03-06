@@ -76,7 +76,7 @@ class PyMaths():
 
     
 
-E = PyMaths() #Init of class object to use functions
+E = PyMaths() #Init of class object to use functions that need to use self
 
 E.IP2BIN("192.168.1.2")
 

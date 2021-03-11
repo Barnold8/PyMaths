@@ -1,4 +1,16 @@
-##Maths file
+##Note - When trying to use a function, the object PyMath must be used. So in your own objects it would look something like
+
+##PyMath.FSIA(arr1,arr2,total)
+
+
+##PYMATH CLASS------------------------------------------------------------------------------------------------------------
+
+decBins = []
+
+
+for i in range(100):
+  decBins.append(pow(2,i))
+  
 
 class PyMaths():
 
@@ -35,9 +47,9 @@ class PyMaths():
     return mynum
 
 
-  def dec2bin(self,num):
+  def Dec2Bin(self,num):
 
-    mynum = num                 #Supports byte but not greater than byte
+    mynum = num                 #Supports up to 100th binary number (633825300114114700748351602688)
     numarray = []
     binarray = [128,64,32,16,8,4,2,1]
 
@@ -52,9 +64,9 @@ class PyMaths():
 
           for i in range(len(binarray)):
 
-            if mynum >= binarray[i]:
+            if mynum >= decBins[i]:
 
-              mynum -= binarray[i]
+              mynum -= decBins[i]
               numarray.append(1)
             else:
               numarray.append(0)
@@ -75,7 +87,7 @@ class PyMaths():
     print(binARR)
 
 
-  def Hex2Den(HexINP):
+  def Hex2Den(self,HexINP):
 
     nums = []
     x = HexINP.upper()
@@ -109,16 +121,56 @@ class PyMaths():
       
     for i in range(len(emptList)):
 
+
       endNum += emptList[i] * pow(16,i)
       
 
     return endNum
-    
 
-E = PyMaths() #Init of class object to use functions that need to use self
 
-x = PyMaths.Hex2Den("a2f")
+  def AddBinNums(self,num1,num2):
 
-print(x)
+    num1.reverse()
+    num2.reverse()
+
+    if type(num1)!= list or type(num2)!= list :
+
+      print(f"Exiting function call, expected type list but got {type(num1)} and {type(num2)}")
+      
+    else:
+
+      dec1 = 0
+      dec2 = 0
+
+      for i in range(len(num1)):
+
+        if num1[i] == 1:
+          dec1 += pow(2,i)
+      for i in range(len(num2)):
+
+        if num2[i] == 1:
+          dec2 += pow(2,i)
+
+      print(dec2)
+      print(dec1)
+      return(self.Dec2Bin(dec1+dec2))
+
+##------------------------------------------------------------------------------------------------------------
+
+### AREA RESERVED FOR TESTING
+
+
+PyMath = PyMaths()
+f = PyMath.Dec2Bin(169)
+print(f)
+
+bin1 = [1,0,1,0,0,1,1,1]
+bin2 = [0,1,0]
+
+x = PyMath.AddBinNums(bin1,bin2)
+#print(x)
+
+###
+
 
 

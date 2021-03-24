@@ -34,7 +34,7 @@ class PyMaths():
   
     return working_sums
   
-  def power(num,power):
+  def power(self,num,power):
 
     mynum = 1
     mypower = power
@@ -131,7 +131,7 @@ class PyMaths():
   def AddBinNums(self,num1,num2):
 
     num1.reverse()
-    num2.reverse()
+    num2.reverse() #NEEDS TO BE FIXED
 
     if type(num1)!= list or type(num2)!= list :
 
@@ -155,20 +155,48 @@ class PyMaths():
       print(dec1)
       return(self.Dec2Bin(dec1+dec2))
 
+
+  def findFactors(self,num):
+
+    factors = []
+    filtered_factors = []
+    for i in range(num+1):
+
+      if i >=1:
+
+        for y in range(num +1 ):
+      
+          temp = []     
+          if i*y == num:
+            temp.append(i)
+            temp.append(y)
+            factors.append(temp)
+
+    for i in range(len(factors)):
+      for y in range(1):
+        filtered_factors.append(factors[i][y])
+    return filtered_factors
+
+  def LPWR(self,p,r):
+
+    pows = []
+    
+    for i in range(r):
+      if i !=0:
+        x = self.power(i,p)
+        pows.append(x)
+    return pows
+    
 ##------------------------------------------------------------------------------------------------------------
 
 ### AREA RESERVED FOR TESTING
 
 
 PyMath = PyMaths()
-f = PyMath.Dec2Bin(169)
-print(f)
 
-bin1 = [1,0,1,0,0,1,1,1]
-bin2 = [0,1,0]
+x = PyMath.findFactors(36)
 
-x = PyMath.AddBinNums(bin1,bin2)
-#print(x)
+print(x)
 
 ###
 

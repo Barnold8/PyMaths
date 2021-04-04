@@ -1,6 +1,6 @@
 ##Note - When trying to use a function, the object of what you are trying to access has to be made. So a number function needs to have Number object. Then you can call a number function. This is because the class may need to refer to multiple functions in one method.
 
-
+import math
 
 ##------------------------------------------------------------------IT
   
@@ -183,15 +183,73 @@ class Number():
         x = self.power(i,p)
         pows.append(x)
     return pows
+
+
+class Shapes:
+
+  def __init__(self):
+
+    pass
+
+  def CCollider(self,obj1,obj2): #Takes to circles and sees if they have collided
     
+    dx = obj1.x - obj2.x
+    dy = obj1.y - obj2.y
+    distance = math.sqrt(dx * dx + dy * dy)
+
+    if distance < obj1.r + obj2.r:
+
+      return True
+
+    else:
+      return False
+    
+  def RCollider(self,obj1,obj2): #Can be repurposed to be a sqaure on sqaure detector too. Just make w and h equal in shape definition
+
+
+    if obj1.x < obj2.x + obj2.w and obj1.x + obj1.w > obj2.x and obj1.y < obj2.y + obj2.h and obj1.y + obj1.h > obj2.y : 
+
+      return True
+    else:
+      return False
+       
 ##------------------------------------------------------------------------------------------------------------
 
 ### AREA RESERVED FOR TESTING
+    
+##Dummy classes - These classes could be used to make a basic shape but when you can write your own it would be better
 
-E = IT()
-x = E.IP2BIN("192.192.192.192")
-print(x)
+class Circle:
+
+  def __init__(self,x,y,r):  #basic circle class to hold values of a circle
+    
+      self.x = x
+      self.y = y
+      self.r = r
+
+class Rect:
+
+  def __init__(self,x,y,w,h):
+
+      self.x = x
+      self.y = y
+      self.w = w
+      self.h = h
+
+##-------------------
+
+circle1 = Rect(100,10,5,3)
+circle2 = Rect(10,12,5,4)
+
+E = Shapes()
+f = E.RCollider(circle1,circle2)
+print(f)
+
 ###
+
+
+
+
 
 
 

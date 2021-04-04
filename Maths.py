@@ -185,12 +185,37 @@ class Number():
     return pows
 
 
+  def NthTermWd(self,firstTerm,difference,term): ##Find nth term given the difference - Arithmetic sequence
+
+    return difference*term+ (firstTerm - difference)
+
+  def NthTerm(self,numArray, term):      # This takes in a sequence of numbers Arithmetic sequence
+
+    return self.NthTermWd(numArray[0], numArray[1] - numArray[0], term)
+
+  def testNth(self,numArray,term):
+
+    if len(numArray) <=2:
+      print("For this operation to be done, the function requires at least 3 elements in the array, minimum\nThis is to detect if the sequence is arithmetic or geometric")
+      return
+
+    if numArray[1] - numArray[0] == numArray[2] - numArray[1]:
+
+        return self.NthTerm(numArray, term)
+      
+    elif numArray[1] / numArray[0] == numArray[2] / numArray[1]:
+
+        return self.power(numArray[0]* numArray[1] / numArray[0], term -1) #-1 to mititgate for the numbers in array index'
+
+  
 class Shapes:
 
   def __init__(self):
 
     pass
 
+
+  ##Shape colliders
   def CCollider(self,obj1,obj2): #Takes to circles and sees if they have collided
     
     dx = obj1.x - obj2.x
@@ -204,7 +229,7 @@ class Shapes:
     else:
       return False
     
-  def RCollider(self,obj1,obj2): #Can be repurposed to be a sqaure on sqaure detector too. Just make w and h equal in shape definition
+  def RCollider(self,obj1,obj2): #Can be repurposed to be a sqaure on sqaure collider too. Just make w and h equal in shape definition
 
 
     if obj1.x < obj2.x + obj2.w and obj1.x + obj1.w > obj2.x and obj1.y < obj2.y + obj2.h and obj1.y + obj1.h > obj2.y : 
@@ -212,7 +237,35 @@ class Shapes:
       return True
     else:
       return False
-       
+
+  ##-----------------
+
+  ##Area formulas
+
+  def circumference(self,r):
+
+    return 2 * math.pi * r
+
+  def AofCircle(self,r):
+
+    return(math.pi * r * r )
+
+  def AofRect(self,w,h):
+    return w*h
+
+  def AofTrap(self,a,b,h):
+
+    return ((a+b) / 2) * h
+
+  def AofParra(self,b,h):
+
+    return b*h
+
+  def AofRhomKiteTri(self,p,q):
+
+    return (p*q) / 2
+
+  ##--------------
 ##------------------------------------------------------------------------------------------------------------
 
 ### AREA RESERVED FOR TESTING
@@ -238,12 +291,10 @@ class Rect:
 
 ##-------------------
 
-circle1 = Rect(100,10,5,3)
-circle2 = Rect(10,12,5,4)
-
-E = Shapes()
-f = E.RCollider(circle1,circle2)
-print(f)
+numArray = [5,5+12,5+12+12]
+numberArray = [1,2,4,8,16]
+E = Number()
+print(E.testNth(numberArray,3))
 
 ###
 

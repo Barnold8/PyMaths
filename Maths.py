@@ -1,21 +1,44 @@
-##Note - When trying to use a function, the object PyMath must be used. So in your own objects it would look something like
-
-##PyMath.FSIA(arr1,arr2,total)
+##Note - When trying to use a function, the object of what you are trying to access has to be made. So a number function needs to have Number object. Then you can call a number function. This is because the class may need to refer to multiple functions in one method.
 
 
-##PYMATH CLASS------------------------------------------------------------------------------------------------------------
 
-decBins = []
-
-
-for i in range(100):
-  decBins.append(pow(2,i))
+##------------------------------------------------------------------IT
   
 
-class PyMaths():
+default_binary_list = []
+
+for i in range(100):
+  default_binary_list.append(pow(2,i))
+
+
+class IT:
 
   def __init__(self):
 
+    self.decBins = []
+    self.number = Number()
+    
+    for i in range(200):
+      self.decBins.append(pow(2,i))
+
+  def IP2BIN(self,IP):
+                            #This functions converts an IP address from its denary to its binary counterpart - Needs to be fixed
+
+      splitIP = IP.split(".")
+      binARR = []
+
+      for i in range(len(splitIP)):
+
+          binARR.append(self.number.Dec2Bin(int(splitIP[i])))
+        
+      return binARR
+
+##------------------------------------------------------------------Number
+
+class Number():
+
+  def __init__(self):
+    #used to allow object init
     pass
 
   def FSIA(arr1, arr2, total):
@@ -47,44 +70,38 @@ class PyMaths():
     return mynum
 
 
-  def Dec2Bin(self,num):
+  def Dec2Bin(self,num,binArr = default_binary_list, cleanup = True): #Default binary list can be used to define the highest numbers used for dec2bin
 
-    mynum = num                 #Supports up to 100th binary number (633825300114114700748351602688)
-    numarray = []
-    binarray = [128,64,32,16,8,4,2,1]
-
-    if type(mynum) != int:
-
-      print(f"Looking for type Integer, got {type(mynum)}...\nExiting function call")
-      return
-
-    else:
-
-      while mynum >=1:
-
-          for i in range(len(binarray)):
-
-            if mynum >= decBins[i]:
-
-              mynum -= decBins[i]
-              numarray.append(1)
-            else:
-              numarray.append(0)
-            
-    return numarray
-
-
-  def IP2BIN(self,IP):
-                            #This functions converts an IP address from its denary to its binary counterpart
-
-    splitIP = IP.split(".")
-    binARR = []
-
-    for i in range(len(splitIP)):
-
-        binARR.append(self.dec2bin(int(splitIP[i])))
+    numArray = []
+    binArr.reverse()
+  
+    for i in range(len(binArr)):
+      if num >= binArr[i]:
+        num -= binArr[i]
+        numArray.append(1)
+      else:
+        numArray.append(0)
+   
+    if cleanup:
       
-    print(binARR)
+      newARR = []
+      found = False
+
+      for i in range(len(numArray)):
+      
+        if found:
+          newARR.append(numArray[i])
+           
+        elif numArray[i] == 1:
+          found = True
+  
+      newARR.insert(0,1)    
+      return newARR
+      
+      
+    
+    return numArray
+
 
 
   def Hex2Den(self,HexINP):
@@ -130,30 +147,10 @@ class PyMaths():
 
   def AddBinNums(self,num1,num2):
 
-    num1.reverse()
-    num2.reverse() #NEEDS TO BE FIXED
+    ##ALL CODE DELETED BECAUSE THE FUNCTION DIDNT WORK
 
-    if type(num1)!= list or type(num2)!= list :
-
-      print(f"Exiting function call, expected type list but got {type(num1)} and {type(num2)}")
-      
-    else:
-
-      dec1 = 0
-      dec2 = 0
-
-      for i in range(len(num1)):
-
-        if num1[i] == 1:
-          dec1 += pow(2,i)
-      for i in range(len(num2)):
-
-        if num2[i] == 1:
-          dec2 += pow(2,i)
-
-      print(dec2)
-      print(dec1)
-      return(self.Dec2Bin(dec1+dec2))
+  ##TODO: FINISH THE FUNCTION
+    pass
 
 
   def findFactors(self,num):
@@ -191,13 +188,9 @@ class PyMaths():
 
 ### AREA RESERVED FOR TESTING
 
-
-PyMath = PyMaths()
-
-x = PyMath.findFactors(36)
-
+E = IT()
+x = E.IP2BIN("192.192.192.192")
 print(x)
-
 ###
 
 

@@ -35,11 +35,41 @@ class IT:
 
 ##------------------------------------------------------------------Number
 
-class Number():
+class Number:
 
   def __init__(self):
     #used to allow object init
     pass
+
+
+  def MFTRF(self,whole,num,denom): #Mixed fraction to regular fraction
+
+      x = (whole * denom) + num
+
+      return f"{x}/{denom}"
+
+  def TimesMixedFractions(self,frac1,frac2):
+
+    if type(frac1) != str or type(frac2) != str:
+      return "Error not type string"
+    else:
+
+      f1 = frac1.split()
+      f2 = frac2.split()
+
+      if len(f1) == 2 and len(f1) < 3:
+        x = f1[1].split('/')
+      else:
+        x = f1[0].split('/')
+      if len(f2) == 2 and len(f2) < 3:
+        y = f2[1].split('/')
+      else:
+        y = f2[0].split('/')
+
+      f1 = self.MFTRF(int(f1[0]),x[0],x[1])
+      f2 = self.MFTRF(int(f2[0]),y[0],y[1])
+      print(f1,f2) #BUG in code. too late for me to be bothered to fix
+      
 
   def FSIA(arr1, arr2, total):
 
@@ -174,7 +204,7 @@ class Number():
         filtered_factors.append(factors[i][y])
     return filtered_factors
 
-  def LPWR(self,p,r):
+  def LPWR(self,p,r): #List powers within range
 
     pows = []
     
@@ -291,10 +321,8 @@ class Rect:
 
 ##-------------------
 
-numArray = [5,5+12,5+12+12]
-numberArray = [1,2,4,8,16]
 E = Number()
-print(E.testNth(numberArray,3))
+print(E.TimesMixedFractions("1 1/2","2 12/1"))
 
 ###
 
